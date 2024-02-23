@@ -1,14 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {User} from '../../models/Auth';
+import persistReducer from 'redux-persist/es/persistReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface AuthState {
   user: User | null;
+  isAuthorized: boolean;
   isLoading: boolean;
   error: string;
 }
 
 const initialState: AuthState = {
   user: null,
+  isAuthorized: false,
   isLoading: false,
   error: '',
 };
@@ -32,5 +36,17 @@ export const authSlice = createSlice({
     clearError(state) {
       state.error = '';
     },
+    setIsAuthorized(state, action: PayloadAction<boolean>) {
+      state.isAuthorized = action.payload;
+    },
   },
 });
+
+export const authPersistedReducer = persistReducer(
+  {
+    key: authSlice.name,
+    storage: AsyncStorage,
+  },
+  authSlice.reducer,
+);
+export const {setIsAuthorized} = authSlice.actions;

@@ -1,25 +1,26 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {FlatList} from 'react-native';
 import AppListItem from '../../components/AppListItem';
 import DataAppContainer from '../../components/DataAppContainer';
 import ScreenContainer from '../../components/AppScreenContainer';
-import {RootStackParamList} from '../../navigation';
 import {postAPI} from '../../services/PostService';
+import {userAPI} from '../../services/UserService';
+import {HomeProps} from '../../navigation/TabNavigation';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Main'>;
+// type Props = NativeStackScreenProps<RootStackParamList, 'Main'>;
 
-const MainScreen = ({navigation}: Props) => {
+const HomeScreen = ({navigation}: HomeProps) => {
+  const {isLoading: isLoadingUser} = userAPI.useGetUserByIdQuery(1);
   const {
     data: posts,
     isFetching,
     refetch,
-    isLoading,
+    isLoading: isLoadingPosts,
   } = postAPI.useFetchPostsQuery(10);
 
   return (
     <ScreenContainer>
-      <DataAppContainer isLoading={isLoading}>
+      <DataAppContainer isLoading={isLoadingPosts || isLoadingUser}>
         <FlatList
           data={posts}
           refreshing={isFetching}
@@ -38,4 +39,4 @@ const MainScreen = ({navigation}: Props) => {
   );
 };
 
-export default MainScreen;
+export default HomeScreen;

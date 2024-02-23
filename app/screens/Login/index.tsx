@@ -1,4 +1,4 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+// import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import AppButton from '../../components/AppButton';
@@ -7,13 +7,13 @@ import AppModal from '../../components/AppModal';
 import AppScreenContainer from '../../components/AppScreenContainer';
 import FullScreenLoader from '../../components/FullScreenLoader';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
-import {RootStackParamList} from '../../navigation';
+// import {RootStackParamList} from '../../navigation';
 import {authSlice} from '../../store/reducers/AuthSlice';
 import {logIn} from '../../store/thunks/Auth';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+// type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = ({navigation}: Props) => {
+const LoginScreen = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const {isLoading, error} = useAppSelector(state => state.auth);

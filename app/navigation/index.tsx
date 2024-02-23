@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import MainScreen from '../screens/Main';
 import DetailScreen from '../screens/Detail';
 import LoginScreen from '../screens/Login';
 import {useAppSelector} from '../hooks/redux';
 import AppSmallButton from '../components/AppSmallButton';
+import HomeScreen from '../screens/Main';
 
 export type RootStackParamList = {
-  Main: undefined;
+  Home: undefined;
   Detail: {id: number};
   Login: undefined;
 };
@@ -16,13 +16,13 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
-  const {user} = useAppSelector(state => state.auth);
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <>
-          {!user ? (
+          {!isAuthorized ? (
             <Stack.Screen
               name="Login"
               component={LoginScreen}
@@ -31,8 +31,8 @@ const Navigation = () => {
           ) : (
             <>
               <Stack.Screen
-                name="Main"
-                component={MainScreen}
+                name="Home"
+                component={HomeScreen}
                 options={{
                   title: 'List',
                   headerRight: () => (
