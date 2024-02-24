@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 import AppListItem from '../../components/AppListItem';
 import DataAppContainer from '../../components/DataAppContainer';
 import ScreenContainer from '../../components/AppScreenContainer';
-import {postAPI} from '../../services/PostService';
+import {useGetPostsByUserIdQuery} from '../../services/PostService';
 import {userAPI} from '../../services/UserService';
 import {HomeProps} from '../../navigation/TabNavigation';
 
@@ -16,7 +16,7 @@ const HomeScreen = ({navigation}: HomeProps) => {
     isFetching,
     refetch,
     isLoading: isLoadingPosts,
-  } = postAPI.useFetchPostsQuery(10);
+  } = useGetPostsByUserIdQuery(1);
 
   return (
     <ScreenContainer>
@@ -29,7 +29,7 @@ const HomeScreen = ({navigation}: HomeProps) => {
           renderItem={({item}) => (
             <AppListItem
               key={item.id}
-              onPress={() => navigation.push('Detail', {id: item.id})}
+              onPress={() => navigation.navigate('Detail', {id: item.id})}
               title={item.title}
             />
           )}

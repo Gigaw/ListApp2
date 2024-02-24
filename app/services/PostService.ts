@@ -5,12 +5,9 @@ export const postAPI = createApi({
   reducerPath: 'PostAPI',
   baseQuery: fetchBaseQuery({baseUrl: 'https://jsonplaceholder.typicode.com/'}),
   endpoints: build => ({
-    fetchPosts: build.query<Post[], number>({
-      query: (limit = 5) => ({
-        url: 'posts',
-        params: {
-          _limit: limit,
-        },
+    getPostsByUserId: build.query<Post[], number>({
+      query: userId => ({
+        url: `posts?userId=${userId}`,
       }),
     }),
     fetchDetailPost: build.query<Post, number>({
@@ -20,3 +17,5 @@ export const postAPI = createApi({
     }),
   }),
 });
+
+export const {useGetPostsByUserIdQuery,  useFetchDetailPostQuery} = postAPI;

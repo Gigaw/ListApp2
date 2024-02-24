@@ -6,6 +6,7 @@ import {
 import SettingsScreen from '../screens/Settings';
 import {RouteProp} from '@react-navigation/native';
 import HomeScreen from '../screens/Main';
+import AppSmallButton from '../components/AppSmallButton';
 
 // Define the parameter types for each screen
 type TabParamList = {
@@ -42,7 +43,16 @@ const Tab = createBottomTabNavigator<TabParamList>();
 function TabNavigation() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: 'List',
+          headerRight: () => (
+            <AppSmallButton onPress={() => null} text="add +" />
+          ),
+        }}
+      />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );

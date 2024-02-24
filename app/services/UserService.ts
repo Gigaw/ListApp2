@@ -12,3 +12,5 @@ export const userAPI = createApi({
     }),
   }),
 });
+
+export const {useGetUserByIdQuery} = userAPI;

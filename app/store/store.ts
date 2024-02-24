@@ -6,12 +6,16 @@ import {userAPI} from '../services/UserService';
 import {commentAPI} from '../services/CommentService';
 import persistStore from 'redux-persist/es/persistStore';
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from 'redux-persist';
+import {albumAPI} from '../services/AlbumService';
+import {photoAPI} from '../services/PhotoService';
 
 const rootReducer = combineReducers({
   auth: authPersistedReducer,
   [postAPI.reducerPath]: postAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
   [commentAPI.reducerPath]: commentAPI.reducer,
+  [albumAPI.reducerPath]: albumAPI.reducer,
+  [photoAPI.reducerPath]: photoAPI.reducer,
 });
 
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -24,7 +28,13 @@ export const setupStore = () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(postAPI.middleware, userAPI.middleware, commentAPI.middleware),
+      }).concat(
+        postAPI.middleware,
+        userAPI.middleware,
+        commentAPI.middleware,
+        albumAPI.middleware,
+        photoAPI.middleware,
+      ),
   });
 };
 

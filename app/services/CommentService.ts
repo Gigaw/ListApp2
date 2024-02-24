@@ -12,3 +12,5 @@ export const commentAPI = createApi({
     }),
   }),
 });
+
+export const {useGetCommentsByPostIdQuery} = commentAPI;
