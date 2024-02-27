@@ -1,45 +1,50 @@
 import React from 'react';
 import DataAppContainer from '../../components/DataAppContainer';
 import ScreenContainer from '../../components/AppScreenContainer';
-import {Image, Text, View} from 'react-native';
+import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
 import Spacer from '../../components/Spacer';
-import {SettingsProps} from '../../navigation/TabNavigation';
 import {useGetPhotosByAlbumIdQuery} from '../../services/PhotoService';
 import {RootStackParamList} from '../../navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import AlbumDetailHeader from './AlbumDetailHeader';
+import PhotoItem from './PhotoItem';
+
+const windowWidth = Dimensions.get('window').width;
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AlbumDetail'>;
+const photoSize = (windowWidth - 2 * 10) / 3;
 
-const AlbumDetail = ({navigation, route}: Props) => {
+const AlbumDetail = ({route}: Props) => {
   const {id, title} = route.params;
   const {isLoading: isLoadingPhotos, data: photos} =
     useGetPhotosByAlbumIdQuery(id);
-  console.log(photos?.length, 'photos');
+
   return (
-    <ScreenContainer>
+    <ScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoadingPhotos}>
-        <Text>Photos</Text>
-        <Spacer height={10} />
-        <Text>{title}</Text>
-        <Spacer height={10} />
         <View>
-          {Array.isArray(photos) ? (
-            <>
-              {photos?.map(photo => (
-                <View key={photo.id}>
-                  <Image
-                    source={{uri: photo.thumbnailUrl}}
-                    style={{width: 50, height: 50}}
-                  />
-                  <Spacer height={10} />
-                </View>
-              ))}
-            </>
-          ) : null}
+          <FlatList
+            ListHeaderComponent={() => AlbumDetailHeader({title})}
+            columnWrapperStyle={styles.columnWrapper}
+            data={photos}
+            numColumns={3}
+            ItemSeparatorComponent={() => Spacer({height: 10})}
+            keyExtractor={photo => photo.id.toString()}
+            renderItem={({item: photo, index}) => (
+              <PhotoItem index={index} photoSize={photoSize} photo={photo} />
+            )}
+          />
         </View>
       </DataAppContainer>
     </ScreenContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  columnWrapper: {
+    justifyContent: 'space-between',
+    marginRight: 'auto',
+  },
+});
 
 export default AlbumDetail;
