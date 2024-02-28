@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 
+import AppListItem from '@app/components/AppListItem';
 import AppText from '@app/components/AppText';
 
 import {Album} from '@app/models/Album';
@@ -12,11 +13,9 @@ interface Props {
 
 const AlbumsListItem = ({album, onPress}: Props) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <AppText fontStyle="h3">
-        {album.id}/ {album.title}
-      </AppText>
-    </TouchableOpacity>
+    <AppListItem onPress={onPress}>
+      <AppText fontStyle="h3">{album.title}</AppText>
+    </AppListItem>
   );
 };
 

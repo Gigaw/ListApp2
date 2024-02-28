@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: 'white',
-    marginBottom: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,

@@ -3,7 +3,7 @@ import type {PropsWithChildren} from 'react';
 import {StyleSheet, Text, TextProps, TextStyle} from 'react-native';
 
 interface Props extends PropsWithChildren, TextProps {
-  fontStyle: keyof typeof styles;
+  fontStyle?: keyof typeof styles;
   style?: TextStyle;
   textAlign?: TextStyle['textAlign'];
 }

@@ -6,6 +6,7 @@ import {albumAPI} from '@app/services/AlbumService';
 import {commentAPI} from '@app/services/CommentService';
 import {photoAPI} from '@app/services/PhotoService';
 import {postAPI} from '@app/services/PostService';
+import {todoAPI} from '@app/services/TodoService';
 import {userAPI} from '@app/services/UserService';
 
 import {authPersistedReducer} from './reducers/AuthSlice';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   [commentAPI.reducerPath]: commentAPI.reducer,
   [albumAPI.reducerPath]: albumAPI.reducer,
   [photoAPI.reducerPath]: photoAPI.reducer,
+  [todoAPI.reducerPath]: todoAPI.reducer,
 });
 
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -35,6 +37,7 @@ export const setupStore = () => {
         commentAPI.middleware,
         albumAPI.middleware,
         photoAPI.middleware,
+        todoAPI.middleware,
       ),
   });
 };

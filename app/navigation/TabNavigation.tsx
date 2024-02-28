@@ -5,8 +5,10 @@ import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import {CompositeScreenProps} from '@react-navigation/native';
 import type {StackScreenProps} from '@react-navigation/stack';
 
+import AlbumsScreen from '@app/screens/Albums';
 import HomeScreen from '@app/screens/Main';
 import SettingsScreen from '@app/screens/Settings';
+import TodosScreen from '@app/screens/Todos';
 
 import AppSmallButton from '@app/components/AppSmallButton';
 
@@ -16,6 +18,8 @@ import {RootStackParamList} from '.';
 type TabParamList = {
   Home: undefined;
   Settings: undefined;
+  Albums: undefined;
+  Todo: undefined;
 };
 
 type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
@@ -24,8 +28,8 @@ type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
 >;
 
 export type HomeProps = TabScreenProps<'Home'>;
-
 export type SettingsProps = TabScreenProps<'Settings'>;
+export type AlbumsProps = TabScreenProps<'Albums'>;
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -44,6 +48,8 @@ function TabNavigation() {
             }),
         }}
       />
+      <Tab.Screen name="Albums" component={AlbumsScreen} />
+      <Tab.Screen name="Todos" component={TodosScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
