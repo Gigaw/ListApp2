@@ -9,7 +9,7 @@ interface Props {
   isPassword?: boolean;
 }
 
-const AppIntup = ({value, onChangeText, name, testID, isPassword}: Props) => {
+const AppInput = ({value, onChangeText, name, testID, isPassword}: Props) => {
   return (
     <View>
       <Text style={styles.name}>{name}</Text>
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppIntup;
+export default AppInput;

@@ -1,7 +1,8 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {User} from '../../models/Auth';
-import persistReducer from 'redux-persist/es/persistReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
+
+import {User} from '@app/models/Auth';
 
 interface AuthState {
   user: User | null;

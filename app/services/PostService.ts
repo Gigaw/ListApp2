@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {Post} from '../models/Post';
+
+import {Post} from '@app/models/Post';
 
 export const postAPI = createApi({
   reducerPath: 'PostAPI',
@@ -18,4 +19,4 @@ export const postAPI = createApi({
   }),
 });
 
-export const {useGetPostsByUserIdQuery,  useFetchDetailPostQuery} = postAPI;
+export const {useGetPostsByUserIdQuery, useFetchDetailPostQuery} = postAPI;

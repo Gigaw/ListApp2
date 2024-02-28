@@ -1,6 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import GLOBAS_STYLES from '../../constants/globalStyles';
+
+import GLOBAS_STYLES from '@app/constants/globalStyles';
 
 interface Props extends PropsWithChildren {
   disableHorizontalPadding?: boolean;

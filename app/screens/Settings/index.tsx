@@ -1,12 +1,16 @@
 import React from 'react';
-import DataAppContainer from '../../components/DataAppContainer';
-import ScreenContainer from '../../components/AppScreenContainer';
-import {useGetUserByIdQuery} from '../../services/UserService';
 import {Text, View} from 'react-native';
-import {useGetAlbomsByUserIdQuery} from '../../services/AlbumService';
-import Spacer from '../../components/Spacer';
+
+import AppScreenContainer from '@app/components/AppScreenContainer';
+import DataAppContainer from '@app/components/DataAppContainer';
+import Spacer from '@app/components/Spacer';
+
+import {useGetAlbomsByUserIdQuery} from '@app/services/AlbumService';
+import {useGetUserByIdQuery} from '@app/services/UserService';
+
+import {SettingsProps} from '@app/navigation/TabNavigation';
+
 import AlbumListItem from './AlbumListItem';
-import {SettingsProps} from '../../navigation/TabNavigation';
 
 const SettingsScreen = ({navigation}: SettingsProps) => {
   const {isLoading: isLoadingUser, data: user} = useGetUserByIdQuery(1);
@@ -14,7 +18,7 @@ const SettingsScreen = ({navigation}: SettingsProps) => {
     useGetAlbomsByUserIdQuery(1);
 
   return (
-    <ScreenContainer>
+    <AppScreenContainer>
       <DataAppContainer isLoading={isLoadingUser || isLoadingAlbums}>
         {/* <Image source={{uri: ''}}> */}
         <Text>{user?.name}</Text>
@@ -45,7 +49,7 @@ const SettingsScreen = ({navigation}: SettingsProps) => {
           ) : null}
         </View>
       </DataAppContainer>
-    </ScreenContainer>
+    </AppScreenContainer>
   );
 };
 

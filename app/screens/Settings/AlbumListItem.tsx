@@ -1,8 +1,16 @@
 import React from 'react';
-import AppText from '../../components/AppText';
 import {Pressable, StyleSheet} from 'react-native';
 
-const AlbumListItem = ({album, onPress}) => {
+import AppText from '@app/components/AppText';
+
+import {Album} from '@app/models/Album';
+
+interface Props {
+  album: Album;
+  onPress: () => void;
+}
+
+const AlbumListItem = ({album, onPress}: Props) => {
   return (
     <Pressable onPress={onPress} style={styles.container}>
       <AppText fontStyle="h3">

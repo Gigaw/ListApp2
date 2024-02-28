@@ -1,6 +1,6 @@
-import {Text, StyleSheet} from 'react-native';
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import {StyleSheet, Text} from 'react-native';
 
 interface Props extends PropsWithChildren {
   fontStyle: keyof typeof styles;

@@ -1,13 +1,14 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import AppListItem from '../../components/AppListItem';
-import DataAppContainer from '../../components/DataAppContainer';
-import ScreenContainer from '../../components/AppScreenContainer';
-import {useGetPostsByUserIdQuery} from '../../services/PostService';
-import {userAPI} from '../../services/UserService';
-import {HomeProps} from '../../navigation/TabNavigation';
 
-// type Props = NativeStackScreenProps<RootStackParamList, 'Main'>;
+import AppListItem from '@app/components/AppListItem';
+import AppScreenContainer from '@app/components/AppScreenContainer';
+import DataAppContainer from '@app/components/DataAppContainer';
+
+import {useGetPostsByUserIdQuery} from '@app/services/PostService';
+import {userAPI} from '@app/services/UserService';
+
+import {HomeProps} from '@app/navigation/TabNavigation';
 
 const HomeScreen = ({navigation}: HomeProps) => {
   const {isLoading: isLoadingUser} = userAPI.useGetUserByIdQuery(1);
@@ -19,7 +20,7 @@ const HomeScreen = ({navigation}: HomeProps) => {
   } = useGetPostsByUserIdQuery(1);
 
   return (
-    <ScreenContainer>
+    <AppScreenContainer>
       <DataAppContainer isLoading={isLoadingPosts || isLoadingUser}>
         <FlatList
           data={posts}
@@ -35,7 +36,7 @@ const HomeScreen = ({navigation}: HomeProps) => {
           )}
         />
       </DataAppContainer>
-    </ScreenContainer>
+    </AppScreenContainer>
   );
 };
 

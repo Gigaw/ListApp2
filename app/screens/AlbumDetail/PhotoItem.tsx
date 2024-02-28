@@ -1,8 +1,16 @@
-import {View, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import Spacer from '../../components/Spacer';
+import {Image, StyleSheet, View} from 'react-native';
 
-const PhotoItem = ({photo, index, photoSize}) => {
+import Spacer from '@app/components/Spacer';
+
+import {Photo} from '@app/models/Photo';
+
+interface Props {
+  photo: Photo;
+  index: number;
+  photoSize: number;
+}
+const PhotoItem = ({photo, index, photoSize}: Props) => {
   return (
     <View style={styles.container}>
       {(index + 1) % 3 === 0 ? <Spacer height={10} width={10} /> : null}

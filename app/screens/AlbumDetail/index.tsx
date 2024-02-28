@@ -1,11 +1,16 @@
 import React from 'react';
-import DataAppContainer from '../../components/DataAppContainer';
-import ScreenContainer from '../../components/AppScreenContainer';
 import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
-import Spacer from '../../components/Spacer';
-import {useGetPhotosByAlbumIdQuery} from '../../services/PhotoService';
-import {RootStackParamList} from '../../navigation';
+
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+import AppScreenContainer from '@app/components/AppScreenContainer';
+import DataAppContainer from '@app/components/DataAppContainer';
+import Spacer from '@app/components/Spacer';
+
+import {useGetPhotosByAlbumIdQuery} from '@app/services/PhotoService';
+
+import {RootStackParamList} from '@app/navigation';
+
 import AlbumDetailHeader from './AlbumDetailHeader';
 import PhotoItem from './PhotoItem';
 
@@ -20,7 +25,7 @@ const AlbumDetail = ({route}: Props) => {
     useGetPhotosByAlbumIdQuery(id);
 
   return (
-    <ScreenContainer disableHorizontalPadding>
+    <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoadingPhotos}>
         <View>
           <FlatList
@@ -36,7 +41,7 @@ const AlbumDetail = ({route}: Props) => {
           />
         </View>
       </DataAppContainer>
-    </ScreenContainer>
+    </AppScreenContainer>
   );
 };
 

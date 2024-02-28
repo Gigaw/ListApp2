@@ -1,17 +1,16 @@
-// import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import AppButton from '../../components/AppButton';
-import AppIntup from '../../components/AppInput';
-import AppModal from '../../components/AppModal';
-import AppScreenContainer from '../../components/AppScreenContainer';
-import FullScreenLoader from '../../components/FullScreenLoader';
-import {useAppDispatch, useAppSelector} from '../../hooks/redux';
-// import {RootStackParamList} from '../../navigation';
-import {authSlice} from '../../store/reducers/AuthSlice';
-import {logIn} from '../../store/thunks/Auth';
 
-// type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+import AppButton from '@app/components/AppButton';
+import AppInput from '@app/components/AppInput';
+import AppModal from '@app/components/AppModal';
+import AppScreenContainer from '@app/components/AppScreenContainer';
+import FullScreenLoader from '@app/components/FullScreenLoader';
+
+import {useAppDispatch, useAppSelector} from '@app/hooks/redux';
+
+import {authSlice} from '@app/store/reducers/AuthSlice';
+import {logIn} from '@app/store/thunks/Auth';
 
 const LoginScreen = () => {
   const [login, setLogin] = useState('');
@@ -22,13 +21,13 @@ const LoginScreen = () => {
   return (
     <AppScreenContainer>
       <View style={styles.contentContainer}>
-        <AppIntup
+        <AppInput
           value={login}
           onChangeText={setLogin}
           name={'login'}
           testID="loginInput"
         />
-        <AppIntup
+        <AppInput
           value={password}
           onChangeText={setPassword}
           name="password"

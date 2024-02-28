@@ -1,9 +1,14 @@
 import React from 'react';
 import {View} from 'react-native';
-import Spacer from '../../components/Spacer';
-import AppText from '../../components/AppText';
 
-const AlbumDetailHeader = ({title}) => {
+import AppText from '@app/components/AppText';
+import Spacer from '@app/components/Spacer';
+
+interface Props {
+  title: string;
+}
+
+const AlbumDetailHeader = ({title}: Props) => {
   return (
     <View>
       <AppText fontStyle="h1">Photos</AppText>
