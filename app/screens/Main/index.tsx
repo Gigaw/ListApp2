@@ -3,7 +3,9 @@ import {FlatList} from 'react-native';
 
 import AppListItem from '@app/components/AppListItem';
 import AppScreenContainer from '@app/components/AppScreenContainer';
+import AppText from '@app/components/AppText';
 import DataAppContainer from '@app/components/DataAppContainer';
+import Spacer from '@app/components/Spacer';
 
 import {useGetPostsByUserIdQuery} from '@app/services/PostService';
 import {userAPI} from '@app/services/UserService';
@@ -30,10 +32,11 @@ const HomeScreen = ({navigation}: HomeProps) => {
           renderItem={({item}) => (
             <AppListItem
               key={item.id}
-              onPress={() => navigation.navigate('Detail', {id: item.id})}
-              title={item.title}
-            />
+              onPress={() => navigation.navigate('Detail', {id: item.id})}>
+              <AppText fontStyle="h3">{item.title}</AppText>
+            </AppListItem>
           )}
+          ItemSeparatorComponent={() => Spacer({height: 10})}
         />
       </DataAppContainer>
     </AppScreenContainer>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 import AppText from '@app/components/AppText';
 
@@ -10,13 +10,13 @@ interface Props {
   onPress: () => void;
 }
 
-const AlbumListItem = ({album, onPress}: Props) => {
+const AlbumsListItem = ({album, onPress}: Props) => {
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <AppText fontStyle="h3">
         {album.id}/ {album.title}
       </AppText>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlbumListItem;
+export default AlbumsListItem;

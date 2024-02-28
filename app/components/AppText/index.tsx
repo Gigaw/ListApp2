@@ -1,13 +1,25 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, TextProps, TextStyle} from 'react-native';
 
-interface Props extends PropsWithChildren {
+interface Props extends PropsWithChildren, TextProps {
   fontStyle: keyof typeof styles;
+  style?: TextStyle;
+  textAlign?: TextStyle['textAlign'];
 }
 
-const AppText = ({fontStyle, children}: Props) => {
-  return <Text style={styles[fontStyle]}>{children}</Text>;
+const AppText = ({
+  fontStyle = 'p1',
+  textAlign,
+  style,
+  children,
+  ...props
+}: Props) => {
+  return (
+    <Text style={[styles[fontStyle], {textAlign: textAlign}, style]} {...props}>
+      {children}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({

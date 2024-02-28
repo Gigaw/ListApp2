@@ -10,7 +10,7 @@ import {useGetUserByIdQuery} from '@app/services/UserService';
 
 import {SettingsProps} from '@app/navigation/TabNavigation';
 
-import AlbumListItem from './AlbumListItem';
+import AlbumsListItem from './AlbumsListItem';
 
 const SettingsScreen = ({navigation}: SettingsProps) => {
   const {isLoading: isLoadingUser, data: user} = useGetUserByIdQuery(1);
@@ -33,7 +33,7 @@ const SettingsScreen = ({navigation}: SettingsProps) => {
             <>
               {albums?.map(album => (
                 <View key={album.id}>
-                  <AlbumListItem
+                  <AlbumsListItem
                     album={album}
                     onPress={() =>
                       navigation.navigate('AlbumDetail', {

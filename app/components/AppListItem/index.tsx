@@ -1,16 +1,21 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React, {PropsWithChildren} from 'react';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
-interface Props {
-  onPress: () => void;
-  title: string;
-}
+type Props = PropsWithChildren<{
+  onPress?: () => void;
+}>;
 
-const AppListItem = ({title, onPress}: Props) => {
+const AppListItem = ({onPress, children}: Props) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
+    <>
+      {onPress ? (
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+          {children}
+        </TouchableOpacity>
+      ) : (
+        <View style={styles.container}>{children}</View>
+      )}
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ const AlbumDetailHeader = ({title}: Props) => {
   return (
     <View>
       <AppText fontStyle="h1">Photos</AppText>
-      <Spacer height={10} />
+      <Spacer height={5} />
       <AppText fontStyle="h2">{title}</AppText>
       <Spacer height={10} />
     </View>

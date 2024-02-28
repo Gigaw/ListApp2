@@ -1,5 +1,12 @@
 import React from 'react';
-import {Alert, Modal, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 interface Props {
   visible: boolean;
@@ -20,11 +27,11 @@ const AppModal = ({visible, text, onClose, testID}: Props) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>{text}</Text>
-          <Pressable
+          <TouchableOpacity
             style={[styles.button, styles.buttonClose]}
             onPress={() => onClose()}>
             <Text style={styles.textStyle}>ok</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
