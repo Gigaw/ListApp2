@@ -4,7 +4,6 @@
  *
  * @format
  */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -13,8 +12,8 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
+  useColorScheme,
 } from 'react-native';
 
 import {

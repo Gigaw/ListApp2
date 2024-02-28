@@ -1,15 +1,16 @@
 import React from 'react';
 
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import {RouteProp} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {CompositeScreenProps} from '@react-navigation/native';
+import type {StackScreenProps} from '@react-navigation/stack';
 
 import HomeScreen from '@app/screens/Main';
 import SettingsScreen from '@app/screens/Settings';
 
 import AppSmallButton from '@app/components/AppSmallButton';
+
+import {RootStackParamList} from '.';
 
 // Define the parameter types for each screen
 type TabParamList = {
@@ -17,29 +18,14 @@ type TabParamList = {
   Settings: undefined;
 };
 
-// Define navigation prop types
-type HomeScreenNavigationProp = BottomTabNavigationProp<TabParamList, 'Home'>;
-
-// Define route prop types
-type HomeScreenRouteProp = RouteProp<TabParamList, 'Home'>;
-
-// Define the screen props types
-export type HomeProps = {
-  navigation: HomeScreenNavigationProp;
-  route: HomeScreenRouteProp;
-};
-
-type SettingsScreenNavigationProp = BottomTabNavigationProp<
-  TabParamList,
-  'Settings'
+type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
+  BottomTabScreenProps<TabParamList, T>,
+  StackScreenProps<RootStackParamList>
 >;
 
-type SettingsScreenRouteProp = RouteProp<TabParamList, 'Settings'>;
+export type HomeProps = TabScreenProps<'Home'>;
 
-export type SettingsProps = {
-  navigation: SettingsScreenNavigationProp;
-  route: SettingsScreenRouteProp;
-};
+export type SettingsProps = TabScreenProps<'Settings'>;
 
 const Tab = createBottomTabNavigator<TabParamList>();
 

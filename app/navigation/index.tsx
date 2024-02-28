@@ -18,7 +18,7 @@ export type RootStackParamList = {
   AlbumDetail: {id: number; title: string};
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);

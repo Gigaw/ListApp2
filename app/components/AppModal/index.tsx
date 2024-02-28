@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
+import {Alert, Modal, Pressable, StyleSheet, Text, View} from 'react-native';
 
 interface Props {
   visible: boolean;

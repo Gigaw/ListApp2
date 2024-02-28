@@ -1,8 +1,10 @@
 import React from 'react';
-import LoginScreen from './../index';
-import {fireEvent, render} from '@testing-library/react-native';
 import {Provider} from 'react-redux';
+
+import {fireEvent, render} from '@testing-library/react-native';
+
 import {setupStore} from '../../../store/store';
+import LoginScreen from './../index';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
