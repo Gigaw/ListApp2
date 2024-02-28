@@ -1,11 +1,15 @@
 import * as React from 'react';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DetailScreen from '../screens/Detail';
-import LoginScreen from '../screens/Login';
-import {useAppSelector} from '../hooks/redux';
+
+import AlbumDetail from '@app/screens/AlbumDetail';
+import DetailScreen from '@app/screens/Detail';
+import LoginScreen from '@app/screens/Login';
+
+import {useAppSelector} from '@app/hooks/redux';
+
 import TabNavigation from './TabNavigation';
-import AlbumDetail from '../screens/AlbumDetail';
 
 export type RootStackParamList = {
   TabNavigation: undefined;
@@ -36,16 +40,8 @@ const Navigation = () => {
                 component={TabNavigation}
                 options={{headerShown: false}}
               />
-              <Stack.Screen
-                // options={{title: ''}}
-                name="Detail"
-                component={DetailScreen}
-              />
-              <Stack.Screen
-                // options={{title: ''}}
-                name="AlbumDetail"
-                component={AlbumDetail}
-              />
+              <Stack.Screen name="Detail" component={DetailScreen} />
+              <Stack.Screen name="AlbumDetail" component={AlbumDetail} />
             </>
           )}
         </>
