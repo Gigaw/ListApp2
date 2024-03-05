@@ -13,11 +13,7 @@ import HomeScreen from '@app/screens/Main';
 import ProfileScreen from '@app/screens/Profile';
 import TodosScreen from '@app/screens/Todos';
 
-import AppSmallButton from '@app/components/AppSmallButton';
-
 import {RootStackParamList} from '.';
-
-const IconSize = 30;
 
 interface IconProps {
   focused: boolean;
@@ -62,7 +58,7 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 function TabNavigation() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen
         name="Home"
         component={HomeScreen}

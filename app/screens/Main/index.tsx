@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 
 import AppListItem from '@app/components/AppListItem';
 import AppScreenContainer from '@app/components/AppScreenContainer';
@@ -22,7 +22,6 @@ const HomeScreen = ({navigation}: HomeProps) => {
     refetch,
     isLoading: isLoadingPosts,
   } = useGetPostsByUserIdQuery(1);
-
   return (
     <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoadingPosts || isLoadingUser}>
@@ -43,6 +42,10 @@ const HomeScreen = ({navigation}: HomeProps) => {
               key={item.id}
               onPress={() => navigation.navigate('Detail', {id: item.id})}>
               <AppText fontStyle="h3">{item.title}</AppText>
+              <Spacer height={5} />
+              <TouchableOpacity onPress={() => console.log('first')}>
+                <AppText>delete</AppText>
+              </TouchableOpacity>
             </AppListItem>
           )}
           ItemSeparatorComponent={() => Spacer({height: 10})}

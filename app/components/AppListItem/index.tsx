@@ -3,13 +3,17 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
 type Props = PropsWithChildren<{
   onPress?: () => void;
+  onLongPress?: () => void;
 }>;
 
-const AppListItem = ({onPress, children}: Props) => {
+const AppListItem = ({onPress, children, onLongPress}: Props) => {
   return (
     <>
       {onPress ? (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.container}
+          onLongPress={onLongPress}
+          onPress={onPress}>
           {children}
         </TouchableOpacity>
       ) : (

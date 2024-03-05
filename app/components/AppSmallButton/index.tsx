@@ -1,14 +1,45 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+
+import AppText from '../AppText';
 
 interface Props {
   text: string;
   onPress: () => void;
+  type?: 'usual' | 'simple';
 }
-const AppSmallButton = ({text, onPress}: Props) => {
+const AppSmallButton = ({text, onPress, type = 'usual'}: Props) => {
+  let containerStyle = styles.container;
+  let textStyle = styles.text;
+
+  switch (type) {
+    case 'usual':
+      containerStyle = {
+        ...containerStyle,
+        backgroundColor: 'grey',
+      };
+      textStyle = {
+        ...textStyle,
+        color: 'white',
+      };
+      break;
+    case 'simple':
+      containerStyle = {
+        ...containerStyle,
+        backgroundColor: 'transparent',
+      };
+      textStyle = {
+        ...textStyle,
+        color: 'black',
+      };
+      break;
+  }
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
+    <TouchableOpacity onPress={onPress} style={containerStyle}>
+      <AppText fontStyle="h5" style={textStyle}>
+        {text}
+      </AppText>
     </TouchableOpacity>
   );
 };
@@ -24,9 +55,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 20,
-    fontWeight: '600',
-    lineHeight: 20,
   },
 });
 

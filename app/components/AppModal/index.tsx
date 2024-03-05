@@ -1,20 +1,26 @@
-import React from 'react';
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {PropsWithChildren} from 'react';
+import {Alert, Modal, StyleSheet, View} from 'react-native';
 
-interface Props {
+import AppSmallButton from '../AppSmallButton';
+import AppText from '../AppText';
+import Spacer from '../Spacer';
+
+interface Props extends PropsWithChildren {
   visible: boolean;
-  text: string;
-  onClose: () => void;
+  title: string;
+  onConfirm: () => void;
+  onCancel: () => void;
   testID?: string;
 }
-const AppModal = ({visible, text, onClose, testID}: Props) => {
+
+const AppModal = ({
+  visible,
+  title,
+  testID,
+  onCancel,
+  onConfirm,
+  children,
+}: Props) => {
   return (
     <Modal
       testID={testID}
@@ -26,12 +32,18 @@ const AppModal = ({visible, text, onClose, testID}: Props) => {
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>{text}</Text>
-          <TouchableOpacity
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => onClose()}>
-            <Text style={styles.textStyle}>ok</Text>
-          </TouchableOpacity>
+          <AppText fontStyle="h3">{title}</AppText>
+          <Spacer height={10} />
+          {children}
+          <Spacer height={10} />
+          <View style={styles.footer}>
+            <AppSmallButton
+              text="Cancel"
+              type="simple"
+              onPress={() => onCancel()}
+            />
+            <AppSmallButton text="Okay" onPress={() => onConfirm()} />
+          </View>
         </View>
       </View>
     </Modal>
@@ -43,13 +55,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalView: {
-    margin: 20,
+    width: '80%',
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: 15,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -77,9 +88,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
