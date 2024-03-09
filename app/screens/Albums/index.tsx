@@ -1,12 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {
-  Alert,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, FlatList, StyleSheet, View} from 'react-native';
 
 import ActionSheet from 'react-native-actionsheet';
 
@@ -32,7 +25,7 @@ import EditAlbumNameModal from './EditAlbumNameModal';
 const options = ['Cancel', 'Edit album name', 'Remove album'];
 
 const AlbumsScreen = ({navigation}: AlbumsProps) => {
-  const actionSheetRef = useRef(null);
+  const actionSheetRef = useRef<ActionSheet>(null);
   const {isLoading: isLoadingAlbums, data: albums} =
     useGetAlbumsByUserIdQuery(1);
   const [editAlbum, setEditAlbum] = useState<Album | null>(null);

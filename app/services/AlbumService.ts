@@ -51,7 +51,7 @@ export const albumAPI = createApi({
                 const albumIndex = draftAlbums.findIndex(
                   el => el.id === albumID,
                 );
-                delete draftAlbums[albumIndex];
+                draftAlbums.splice(albumIndex, 1);
               },
             ),
           );
