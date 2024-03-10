@@ -5,6 +5,7 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import {User} from '@app/models/Auth';
 
 interface AuthState {
+  userId: number | null;
   user: User | null;
   isAuthorized: boolean;
   isLoading: boolean;
@@ -12,6 +13,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
+  userId: null,
   user: null,
   isAuthorized: false,
   isLoading: false,
@@ -27,8 +29,13 @@ export const authSlice = createSlice({
     },
     authFetchingSuccess(state, action: PayloadAction<User>) {
       state.isLoading = false;
+      state.isAuthorized = true;
       state.error = '';
       state.user = action.payload;
+    },
+    logout(state) {
+      state.isAuthorized = false;
+      state.user = null;
     },
     authFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
@@ -50,4 +57,5 @@ export const authPersistedReducer = persistReducer(
   },
   authSlice.reducer,
 );
-export const {setIsAuthorized} = authSlice.actions;
+export const {setIsAuthorized, authFetchingSuccess, authFetchingError, logout} =
+  authSlice.actions;

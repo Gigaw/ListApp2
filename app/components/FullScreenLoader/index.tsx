@@ -1,5 +1,12 @@
 import React from 'react';
-import {ActivityIndicator, Dimensions, StyleSheet, View} from 'react-native';
+// import {Modal} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Modal,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 interface Props {
   isLoading: boolean;
@@ -7,17 +14,15 @@ interface Props {
 
 const FullScreenLoader = ({isLoading}: Props) => {
   return (
-    <>
-      {isLoading ? (
-        <View style={styles.container}>
-          <ActivityIndicator
-            size={'large'}
-            style={styles.loader}
-            color={'white'}
-          />
-        </View>
-      ) : null}
-    </>
+    <Modal animationType="fade" transparent={true} visible={isLoading}>
+      <View style={styles.container}>
+        <ActivityIndicator
+          size={'large'}
+          style={styles.loader}
+          color={'white'}
+        />
+      </View>
+    </Modal>
   );
 };
 
@@ -31,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   loader: {
-    paddingBottom: 200,
+    // paddingBottom: 200,
   },
 });
 

@@ -4,8 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import AlbumDetail from '@app/screens/AlbumDetail';
-import DetailScreen from '@app/screens/PostDetail';
 import LoginScreen from '@app/screens/Login';
+import DetailScreen from '@app/screens/PostDetail';
 
 import {useAppSelector} from '@app/hooks/redux';
 

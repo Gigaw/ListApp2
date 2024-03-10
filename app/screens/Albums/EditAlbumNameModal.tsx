@@ -1,9 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
-import {HelperText} from 'react-native-paper';
 
 import AppInput from '@app/components/AppInput';
 import AppModal from '@app/components/AppModal';
@@ -41,18 +40,22 @@ const EditAlbumNameModal = ({visible, onCancel, onConfirm, album}: Props) => {
       visible={visible}
       onCancel={onCancel}
       onConfirm={submitForm}>
-      <View style={{width: '100%'}}>
+      <View style={styles.container}>
         <AppInput
           name="Album name"
           value={values.title}
           onChangeText={handleChange('title')}
+          errorText={errors.title}
         />
-        <HelperText type="error" visible={!!errors.title}>
-          {errors.title}
-        </HelperText>
       </View>
     </AppModal>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+  },
+});
 
 export default EditAlbumNameModal;
