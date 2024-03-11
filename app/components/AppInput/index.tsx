@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 
-import {HelperText} from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
+
+import AppText from '../AppText';
+import Spacer from '../Spacer';
 
 interface Props {
   value: string;
@@ -49,9 +51,12 @@ const AppInput = ({
         )}
       </View>
       {!!errorText && (
-        <HelperText type="error" visible={!!errorText}>
-          {errorText}
-        </HelperText>
+        <>
+          <Spacer height={5} />
+          <AppText type="error" fontStyle="p3" style={styles.errorMessage}>
+            {errorText}
+          </AppText>
+        </>
       )}
     </View>
   );
@@ -78,6 +83,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: '50%',
+  },
+  errorMessage: {
+    marginLeft: 10,
   },
 });
 

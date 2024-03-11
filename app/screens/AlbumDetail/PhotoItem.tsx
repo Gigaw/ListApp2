@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Spacer from '@app/components/Spacer';
 
@@ -9,17 +9,18 @@ interface Props {
   photo: Photo;
   index: number;
   photoSize: number;
+  onPress: () => void;
 }
-const PhotoItem = ({photo, index, photoSize}: Props) => {
+const PhotoItem = ({photo, index, photoSize, onPress}: Props) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       {(index + 1) % 3 === 0 ? <Spacer height={10} width={10} /> : null}
       <Image
         source={{uri: photo.thumbnailUrl}}
         style={{width: photoSize, height: photoSize}}
       />
       {index % 3 === 0 ? <Spacer height={10} width={10} /> : null}
-    </View>
+    </TouchableOpacity>
   );
 };
 

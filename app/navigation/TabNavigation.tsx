@@ -9,7 +9,7 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import AlbumsScreen from '@app/screens/Albums';
-import HomeScreen from '@app/screens/Main';
+import PostsScreen from '@app/screens/Posts';
 import ProfileScreen from '@app/screens/Profile';
 import TodosScreen from '@app/screens/Todos';
 
@@ -38,7 +38,7 @@ const PostIcon = ({color, size}: IconProps) => (
 
 // Define the parameter types for each screen
 type TabParamList = {
-  Home: undefined;
+  Posts: undefined;
   Profile: undefined;
   Albums: undefined;
   Todos: undefined;
@@ -49,7 +49,7 @@ type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
   StackScreenProps<RootStackParamList>
 >;
 
-export type HomeProps = TabScreenProps<'Home'>;
+export type PostsProps = TabScreenProps<'Posts'>;
 export type ProfileProps = TabScreenProps<'Profile'>;
 export type AlbumsProps = TabScreenProps<'Albums'>;
 export type TodosProps = TabScreenProps<'Todos'>;
@@ -60,8 +60,8 @@ function TabNavigation() {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Posts"
+        component={PostsScreen}
         options={{
           tabBarIcon: PostIcon,
           title: 'Posts',

@@ -57,5 +57,10 @@ export const authPersistedReducer = persistReducer(
   },
   authSlice.reducer,
 );
-export const {setIsAuthorized, authFetchingSuccess, authFetchingError, logout} =
-  authSlice.actions;
+export const {
+  setIsAuthorized,
+  clearError,
+  authFetchingSuccess,
+  authFetchingError,
+  logout,
+} = authSlice.actions;

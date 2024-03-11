@@ -25,7 +25,7 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerBackTitle: 'Back'}}>
         <>
           {!isAuthorized ? (
             <Stack.Screen
@@ -41,7 +41,11 @@ const Navigation = () => {
                 options={{headerShown: false}}
               />
               <Stack.Screen name="Detail" component={DetailScreen} />
-              <Stack.Screen name="AlbumDetail" component={AlbumDetail} />
+              <Stack.Screen
+                name="AlbumDetail"
+                component={AlbumDetail}
+                options={{title: 'Album'}}
+              />
             </>
           )}
         </>

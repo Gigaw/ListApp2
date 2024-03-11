@@ -10,7 +10,7 @@ import Spacer from '@app/components/Spacer';
 
 import {useGetUserByIdQuery} from '@app/services/UserService';
 
-import {logout, setIsAuthorized} from '@app/store/reducers/AuthSlice';
+import {logout} from '@app/store/reducers/AuthSlice';
 
 const ProfileScreen = () => {
   const {isLoading: isLoadingUser, data: user} = useGetUserByIdQuery(1);

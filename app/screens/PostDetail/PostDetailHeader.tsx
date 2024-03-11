@@ -38,7 +38,6 @@ const PostDetailHeader = ({
           </TouchableOpacity>
         </>
       )}
-
       <Spacer height={20} />
     </View>
   );

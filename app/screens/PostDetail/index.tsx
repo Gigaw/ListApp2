@@ -32,27 +32,23 @@ const DetailScreen = ({route}: Props) => {
       <DataAppContainer isLoading={isLoading || isLoadingComments}>
         <FlatList
           style={styles.container}
-          // TEMPORARY
-          // eslint-disable-next-line react/no-unstable-nested-components
-          ListHeaderComponent={() => (
+          ListHeaderComponent={
             <PostDetailHeader
               post={post}
               numberOfComments={5}
               commentsShown={commentsShown}
               onShowCommentsPress={() => setCommentsShown(prev => !prev)}
             />
-          )}
+          }
           data={comments}
           renderItem={({item}) => (
             <>{commentsShown && <CommentsListItem item={item} />}</>
           )}
-          // TEMPORARY
-          // eslint-disable-next-line react/no-unstable-nested-components
-          ListEmptyComponent={() => (
+          ListEmptyComponent={
             <AppText textAlign="center" fontStyle={'h1'}>
               No comments
             </AppText>
-          )}
+          }
         />
       </DataAppContainer>
     </AppScreenContainer>

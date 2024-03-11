@@ -16,11 +16,7 @@ const FullScreenLoader = ({isLoading}: Props) => {
   return (
     <Modal animationType="fade" transparent={true} visible={isLoading}>
       <View style={styles.container}>
-        <ActivityIndicator
-          size={'large'}
-          style={styles.loader}
-          color={'white'}
-        />
+        <ActivityIndicator size={'large'} color={'white'} />
       </View>
     </Modal>
   );
@@ -34,9 +30,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     position: 'absolute',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  loader: {
-    // paddingBottom: 200,
   },
 });
 

@@ -13,6 +13,8 @@ import {
   useGetAlbumsByUserIdQuery,
 } from '@app/services/AlbumService';
 
+import {useAppSelector} from '@app/hooks/redux';
+
 import {Album} from '@app/models/Album';
 
 import GLOBAS_STYLES from '@app/constants/globalStyles';
@@ -25,9 +27,11 @@ import EditAlbumNameModal from './EditAlbumNameModal';
 const options = ['Cancel', 'Edit album name', 'Remove album'];
 
 const AlbumsScreen = ({navigation}: AlbumsProps) => {
+  const user = useAppSelector(state => state.auth.user);
   const actionSheetRef = useRef<ActionSheet>(null);
-  const {isLoading: isLoadingAlbums, data: albums} =
-    useGetAlbumsByUserIdQuery(1);
+  const {isLoading: isLoadingAlbums, data: albums} = useGetAlbumsByUserIdQuery(
+    user?.id as number,
+  );
   const [editAlbum, setEditAlbum] = useState<Album | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [deleteAlbum] = useDeleteAlbumMutation();
@@ -75,6 +79,7 @@ const AlbumsScreen = ({navigation}: AlbumsProps) => {
             />
           )}
           ItemSeparatorComponent={() => Spacer({height: 10})}
+          ListFooterComponent={<Spacer height={20} />}
         />
       </DataAppContainer>
       <EditAlbumNameModal
