@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
+import AppHeader from '@app/components/AppHeader';
 import AppListItem from '@app/components/AppListItem';
 import AppScreenContainer from '@app/components/AppScreenContainer';
 import AppText from '@app/components/AppText';
@@ -33,10 +34,10 @@ const HomeScreen = ({navigation}: PostsProps) => {
           refreshing={isFetching}
           onRefresh={refetch}
           ListHeaderComponent={
-            <>
-              <AppText fontStyle="h1">Posts</AppText>
-              <Spacer height={20} />
-            </>
+            <AppHeader
+              title="Posts"
+              description="Here you can see all your posts. Click on one to see the details."
+            />
           }
           keyExtractor={el => `${el.id}`}
           renderItem={({item}) => (

@@ -1,8 +1,8 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
+import AppHeader from '@app/components/AppHeader';
 import AppScreenContainer from '@app/components/AppScreenContainer';
-import AppText from '@app/components/AppText';
 import DataAppContainer from '@app/components/DataAppContainer';
 import Spacer from '@app/components/Spacer';
 
@@ -12,24 +12,30 @@ import {
   useUpdateTodoStatusMutation,
 } from '@app/services/TodoService';
 
+import {useAppSelector} from '@app/hooks/redux';
+
 import GLOBAS_STYLES from '@app/constants/globalStyles';
 
 import TodosListItem from './TodosListItem';
 
 const TodosScreen = () => {
-  const {isLoading: isLoadingTodos, data: todos} = useGetTodosByUserIdQuery(1);
+  const user = useAppSelector(state => state.auth.user);
+  const {isLoading: isLoadingTodos, data: todos} = useGetTodosByUserIdQuery(
+    user?.id as number,
+  );
   const [updateTodoStatus] = useUpdateTodoStatusMutation();
   const [deleteTodo] = useDeleteTodoMutation();
+
   return (
     <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoadingTodos}>
         <FlatList
           style={styles.container}
           ListHeaderComponent={
-            <>
-              <AppText fontStyle="h1">Todos</AppText>
-              <Spacer height={20} />
-            </>
+            <AppHeader
+              title="Todos"
+              description="Tap on checkbox to mark task as done or press on bin to remove it"
+            />
           }
           data={todos}
           keyExtractor={item => item.id.toString()}

@@ -1,10 +1,10 @@
 import React, {useRef, useState} from 'react';
-import {Alert, FlatList, StyleSheet, View} from 'react-native';
+import {Alert, FlatList, StyleSheet} from 'react-native';
 
 import ActionSheet from 'react-native-actionsheet';
 
+import AppHeader from '@app/components/AppHeader';
 import AppScreenContainer from '@app/components/AppScreenContainer';
-import AppText from '@app/components/AppText';
 import DataAppContainer from '@app/components/DataAppContainer';
 import Spacer from '@app/components/Spacer';
 
@@ -57,10 +57,10 @@ const AlbumsScreen = ({navigation}: AlbumsProps) => {
           contentContainerStyle={styles.listContentContainer}
           data={albums}
           ListHeaderComponent={
-            <View>
-              <AppText fontStyle="h1">Albums</AppText>
-              <Spacer height={20} />
-            </View>
+            <AppHeader
+              title="Albums"
+              description="Here you can see all your albums. Click on one to see the details or press longer to edit or delete."
+            />
           }
           keyExtractor={item => item.id.toString()}
           renderItem={({item: album}) => (
@@ -82,12 +82,14 @@ const AlbumsScreen = ({navigation}: AlbumsProps) => {
           ListFooterComponent={<Spacer height={20} />}
         />
       </DataAppContainer>
-      <EditAlbumNameModal
-        visible={!!showEditModal}
-        album={editAlbum}
-        onCancel={() => setShowEditModal(false)}
-        onConfirm={() => setShowEditModal(false)}
-      />
+      {!!showEditModal && (
+        <EditAlbumNameModal
+          visible={!!showEditModal}
+          album={editAlbum}
+          onCancel={() => setShowEditModal(false)}
+          onConfirm={() => setShowEditModal(false)}
+        />
+      )}
       <ActionSheet
         ref={actionSheetRef}
         title={'What do you want to do to the album?'}

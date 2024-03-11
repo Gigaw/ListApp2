@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import AppScreenContainer from '@app/components/AppScreenContainer';
 import AppText from '@app/components/AppText';
 import DataAppContainer from '@app/components/DataAppContainer';
+import Spacer from '@app/components/Spacer';
 
 import {useGetCommentsByPostIdQuery} from '@app/services/CommentService';
 import {postAPI} from '@app/services/PostService';
@@ -35,7 +36,7 @@ const DetailScreen = ({route}: Props) => {
           ListHeaderComponent={
             <PostDetailHeader
               post={post}
-              numberOfComments={5}
+              numberOfComments={comments?.length || 0}
               commentsShown={commentsShown}
               onShowCommentsPress={() => setCommentsShown(prev => !prev)}
             />
@@ -49,6 +50,8 @@ const DetailScreen = ({route}: Props) => {
               No comments
             </AppText>
           }
+          ItemSeparatorComponent={() => Spacer({height: 10})}
+          ListFooterComponent={<Spacer height={20} />}
         />
       </DataAppContainer>
     </AppScreenContainer>
