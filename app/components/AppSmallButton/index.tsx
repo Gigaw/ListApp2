@@ -7,8 +7,9 @@ interface Props {
   text: string;
   onPress: () => void;
   type?: 'usual' | 'simple';
+  testID?: string;
 }
-const AppSmallButton = ({text, onPress, type = 'usual'}: Props) => {
+const AppSmallButton = ({text, onPress, type = 'usual', testID}: Props) => {
   let containerStyle = styles.container;
   let textStyle = styles.text;
 
@@ -36,7 +37,7 @@ const AppSmallButton = ({text, onPress, type = 'usual'}: Props) => {
   }
 
   return (
-    <TouchableOpacity onPress={onPress} style={containerStyle}>
+    <TouchableOpacity onPress={onPress} style={containerStyle} testID={testID}>
       <AppText fontStyle="h5" style={textStyle}>
         {text}
       </AppText>

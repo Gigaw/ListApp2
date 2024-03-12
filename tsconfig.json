@@ -2,9 +2,9 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "include": ["./node_modules/redux-persist/types", "app"],
   "compilerOptions": {
-    "baseUrl": ".",                                      
+    "baseUrl": ".",
     "paths": {
-      "@app/*": ["app/*"],
-    },
+      "@app/*": ["app/*"]
+    }
   }
 }

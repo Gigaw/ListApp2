@@ -11,7 +11,11 @@ const DataAppContainer = ({isLoading, children}: Props) => {
     <>
       {isLoading ? (
         <View style={styles.container}>
-          <ActivityIndicator size={'large'} style={styles.loader} />
+          <ActivityIndicator
+            size={'large'}
+            style={styles.loader}
+            testID="loading-indicator"
+          />
         </View>
       ) : (
         children

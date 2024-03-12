@@ -44,6 +44,7 @@ const AppInput = ({
             key={Number(isPasswordVisible)}
             name={isPasswordVisible ? 'eye-with-line' : 'eye'}
             size={20}
+            testID="eye-icon"
             color="black"
             onPress={() => setIsPasswordVisible(prev => !prev)}
             style={styles.eyeIcon}

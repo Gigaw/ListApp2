@@ -12,8 +12,9 @@ const AppScreenContainer = ({
   disableHorizontalPadding = false,
 }: Props) => {
   return (
-    <SafeAreaView style={styles.safeAreaView}>
+    <SafeAreaView style={styles.safeAreaView} testID="app-screen-container">
       <View
+        testID="app-screen-container-view"
         style={[
           styles.container,
           !disableHorizontalPadding && styles.horizontalPadding,

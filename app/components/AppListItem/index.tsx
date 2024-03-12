@@ -12,6 +12,7 @@ type Props = PropsWithChildren<{
   onLongPress?: () => void;
   paddingDisabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  testID?: string;
 }>;
 
 const AppListItem = ({
@@ -20,6 +21,7 @@ const AppListItem = ({
   onLongPress,
   style,
   paddingDisabled,
+  ...props
 }: Props) => {
   const currentStyle = [styles.container, style];
 
@@ -29,15 +31,18 @@ const AppListItem = ({
 
   return (
     <>
-      {onPress ? (
+      {onPress || onLongPress ? (
         <TouchableOpacity
           style={currentStyle}
           onLongPress={onLongPress}
-          onPress={onPress}>
+          onPress={onPress}
+          {...props}>
           {children}
         </TouchableOpacity>
       ) : (
-        <View style={currentStyle}>{children}</View>
+        <View style={currentStyle} {...props}>
+          {children}
+        </View>
       )}
     </>
   );
