@@ -5,6 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "@app/*": ["app/*"]
-    }
+    },
+    "module": "ESNext",
+    "target": "ESNext",
+    "esModuleInterop": true
   }
 }
