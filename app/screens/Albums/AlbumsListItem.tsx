@@ -9,11 +9,15 @@ interface Props {
   album: Album;
   onPress: () => void;
   onLongPress: () => void;
+  testID?: string;
 }
 
-const AlbumsListItem = ({album, onPress, onLongPress}: Props) => {
+const AlbumsListItem = ({album, onPress, onLongPress, testID}: Props) => {
   return (
-    <AppListItem onPress={onPress} onLongPress={() => onLongPress()}>
+    <AppListItem
+      testID={testID}
+      onPress={onPress}
+      onLongPress={() => onLongPress()}>
       <AppText fontStyle="h3">{album.title}</AppText>
     </AppListItem>
   );

@@ -16,7 +16,7 @@ import GLOBAS_STYLES from '@app/constants/globalStyles';
 import {RootStackParamList} from '@app/navigation';
 
 import CommentsListItem from './CommentsListItem';
-import PostDetailHeader from './PostDetailHeader';
+import PostDetailBody from './PostDetailBody';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Detail'>;
 
@@ -32,9 +32,10 @@ const DetailScreen = ({route}: Props) => {
     <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoading || isLoadingComments}>
         <FlatList
+          testID="comments-list"
           style={styles.container}
           ListHeaderComponent={
-            <PostDetailHeader
+            <PostDetailBody
               post={post}
               numberOfComments={comments?.length || 0}
               commentsShown={commentsShown}
@@ -42,8 +43,12 @@ const DetailScreen = ({route}: Props) => {
             />
           }
           data={comments}
-          renderItem={({item}) => (
-            <>{commentsShown && <CommentsListItem item={item} />}</>
+          renderItem={({item, index}) => (
+            <>
+              {commentsShown && (
+                <CommentsListItem item={item} testID={`comment-${index}`} />
+              )}
+            </>
           )}
           ListEmptyComponent={
             <AppText textAlign="center" fontStyle={'h1'}>

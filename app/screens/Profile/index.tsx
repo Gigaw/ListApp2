@@ -25,6 +25,7 @@ const ProfileScreen = () => {
         <AppText fontStyle="h3">{user?.phone}</AppText>
         <Spacer height={50} />
         <AppButton
+          testID="logout-button"
           text="Log out"
           style={styles.button}
           onPress={() => dispatch(logout())}

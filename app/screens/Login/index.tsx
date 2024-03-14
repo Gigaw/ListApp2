@@ -58,7 +58,7 @@ const LoginScreen = () => {
           value={values.login}
           onChangeText={handleChange('login')}
           name="login"
-          testID="loginInput"
+          testID="login-input"
           errorText={touched.login ? errors.login : ''}
         />
         <Spacer height={5} />
@@ -67,7 +67,7 @@ const LoginScreen = () => {
           value={values.password}
           onChangeText={handleChange('password')}
           name="password"
-          testID="passwordInput"
+          testID="password-input"
           isPassword={true}
           errorText={touched.password ? errors.password : ''}
         />
@@ -76,7 +76,7 @@ const LoginScreen = () => {
           onPress={() => submitForm()}
           text="login"
           style={styles.submitButton}
-          testID="loginButton"
+          testID="login-button"
         />
         {!!serverError && (
           <>

@@ -21,6 +21,7 @@ const ImageModal = ({imageUrl, visible, onClose}: Props) => {
           resizeMode="contain"
         />
         <FontAwesome
+          testID="close-button"
           name="close"
           size={30}
           onPress={onClose}

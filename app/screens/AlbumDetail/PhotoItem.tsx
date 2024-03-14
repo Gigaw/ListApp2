@@ -10,10 +10,14 @@ interface Props {
   index: number;
   photoSize: number;
   onPress: () => void;
+  testID?: string;
 }
-const PhotoItem = ({photo, index, photoSize, onPress}: Props) => {
+const PhotoItem = ({photo, index, photoSize, onPress, testID}: Props) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={onPress}
+      testID={testID}>
       {(index + 1) % 3 === 0 ? <Spacer height={10} width={10} /> : null}
       <Image
         source={{uri: photo.thumbnailUrl}}

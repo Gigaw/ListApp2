@@ -63,9 +63,10 @@ const AlbumsScreen = ({navigation}: AlbumsProps) => {
             />
           }
           keyExtractor={item => item.id.toString()}
-          renderItem={({item: album}) => (
+          renderItem={({item: album, index}) => (
             <AlbumsListItem
               album={album}
+              testID={`album-item-${index}`}
               onLongPress={() => {
                 setEditAlbum(album);
                 actionSheetRef.current?.show();

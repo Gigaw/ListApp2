@@ -39,6 +39,7 @@ const AlbumDetail = ({route}: Props) => {
             keyExtractor={photo => photo.id.toString()}
             renderItem={({item: photo, index}) => (
               <PhotoItem
+                testID={`photo-item-${index}`}
                 onPress={() => setDetailedImage(photo.url)}
                 index={index}
                 photoSize={photoSize}

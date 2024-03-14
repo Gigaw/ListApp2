@@ -40,9 +40,10 @@ const HomeScreen = ({navigation}: PostsProps) => {
             />
           }
           keyExtractor={el => `${el.id}`}
-          renderItem={({item}) => (
+          renderItem={({item, index}) => (
             <AppListItem
               key={item.id}
+              testID={`post-item-${index}`}
               onPress={() => navigation.navigate('Detail', {id: item.id})}>
               <AppText fontStyle="h3">{item.title}</AppText>
               <Spacer height={5} />

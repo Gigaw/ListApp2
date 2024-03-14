@@ -13,21 +13,26 @@ interface Props {
   todo: Todo;
   onPress: () => void;
   onDelete: () => void;
+  testID?: string;
 }
 
-const TodosListItem = ({todo, onPress, onDelete}: Props) => {
+const TodosListItem = ({todo, onPress, onDelete, testID}: Props) => {
   return (
     <AppListItem paddingDisabled>
       <View style={styles.container}>
         <TouchableOpacity
           onPress={onPress}
           style={[styles.checkbox, todo.completed && styles.checkboxChecked]}
+          testID={`${testID}-checkbox`}
         />
         <Spacer width={10} />
         <AppText fontStyle="h3" style={styles.title}>
           {todo.title}
         </AppText>
-        <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onPress={onDelete}
+          testID={`${testID}-remove-button`}>
           <AntDesign name="delete" size={16} color="red" />
         </TouchableOpacity>
       </View>

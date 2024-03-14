@@ -65,6 +65,7 @@ function TabNavigation() {
         options={{
           tabBarIcon: PostIcon,
           title: 'Posts',
+          tabBarTestID: 'post-tab',
         }}
       />
       <Tab.Screen
@@ -73,6 +74,7 @@ function TabNavigation() {
         options={{
           tabBarIcon: AlbumIcon,
           title: 'Albums',
+          tabBarTestID: 'album-tab',
         }}
       />
       <Tab.Screen
@@ -81,6 +83,7 @@ function TabNavigation() {
         options={{
           tabBarIcon: TaskIcon,
           title: 'Todos',
+          tabBarTestID: 'todo-tab',
         }}
       />
       <Tab.Screen
@@ -89,6 +92,7 @@ function TabNavigation() {
         options={{
           tabBarIcon: ProfileIcon,
           title: 'Profile',
+          tabBarTestID: 'profile-tab',
         }}
       />
     </Tab.Navigator>

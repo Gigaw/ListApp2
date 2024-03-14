@@ -9,9 +9,10 @@ import {Comment} from '@app/models/Comment';
 
 interface Props {
   item: Comment;
+  testID?: string;
 }
 
-const CommentsListItem = ({item}: Props) => {
+const CommentsListItem = ({item, testID}: Props) => {
   const [showMore, setShowMore] = useState(false);
 
   return (
@@ -24,7 +25,9 @@ const CommentsListItem = ({item}: Props) => {
         {item.body}
       </AppText>
       <Spacer height={5} />
-      <TouchableOpacity onPress={() => setShowMore(prev => !prev)}>
+      <TouchableOpacity
+        onPress={() => setShowMore(prev => !prev)}
+        testID={testID + '-show-more-button'}>
         <AppText fontStyle="h5" numberOfLines={1}>
           {showMore ? 'Show less' : 'Show more'}
         </AppText>

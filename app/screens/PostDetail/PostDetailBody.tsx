@@ -14,7 +14,7 @@ interface Props {
   onShowCommentsPress: () => void;
 }
 
-const PostDetailHeader = ({
+const PostDetailBody = ({
   post,
   numberOfComments,
   commentsShown,
@@ -33,6 +33,7 @@ const PostDetailHeader = ({
           </AppText>
           <Spacer height={10} />
           <AppSmallButton
+            testID="show-comments-button"
             type="usual"
             text={commentsShown ? 'Hide comments' : 'Show comments'}
             onPress={() => onShowCommentsPress()}
@@ -44,4 +45,4 @@ const PostDetailHeader = ({
   );
 };
 
-export default PostDetailHeader;
+export default PostDetailBody;

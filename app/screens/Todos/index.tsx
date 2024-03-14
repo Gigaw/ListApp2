@@ -39,8 +39,9 @@ const TodosScreen = () => {
           }
           data={todos}
           keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
+          renderItem={({item, index}) => (
             <TodosListItem
+              testID={`todo-item-${index}`}
               onDelete={() => {
                 deleteTodo({id: item.id, userId: item.userId});
               }}
