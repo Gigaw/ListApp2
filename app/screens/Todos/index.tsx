@@ -4,10 +4,7 @@ import {StyleSheet} from 'react-native';
 import Animated, {
   FadeOutLeft,
   FlipInEasyX,
-  FlipOutYRight,
-  Layout,
   LinearTransition,
-  Transition,
 } from 'react-native-reanimated';
 
 import AppHeader from '@app/components/AppHeader';
@@ -27,23 +24,19 @@ import GLOBAS_STYLES, {GLOBAL_ANIMATIONS} from '@app/constants/globalStyles';
 
 import TodosListItem from './TodosListItem';
 
-// const transition = Transition.duration(500);
-
 const TodosScreen = () => {
-  // const viewableItems = useSharedValue<ViewToken[]>([]);
   const user = useAppSelector(state => state.auth.user);
   const {isLoading: isLoadingTodos, data: todos} = useGetTodosByUserIdQuery(
     user?.id as number,
   );
+
   const [updateTodoStatus] = useUpdateTodoStatusMutation();
   const [deleteTodo] = useDeleteTodoMutation();
-  // console.log(Animated.Transition);
   return (
     <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoadingTodos}>
         <Animated.FlatList
-          // layout={LinearTransition.duration(500).delay(500)}
-          // layout={Layout.duration(500).delay(500)}
+          itemLayoutAnimation={LinearTransition.delay(500)}
           style={styles.container}
           ListHeaderComponent={
             <Animated.View entering={GLOBAL_ANIMATIONS.FADE_IN_LEFT_HEADER}>
@@ -57,9 +50,6 @@ const TodosScreen = () => {
           keyExtractor={item => item.id.toString()}
           renderItem={({item, index}) => (
             <Animated.View
-              style={{zIndex: 100 - index}}
-              layout={LinearTransition.duration(500).delay(500)}
-              // layout={Layout.duration(500).delay(500)}
               exiting={FadeOutLeft.duration(500)}
               entering={FlipInEasyX.duration(500)}>
               <TodosListItem
