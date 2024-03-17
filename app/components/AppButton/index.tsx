@@ -7,6 +7,12 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+
 interface Props {
   text: string;
   onPress: () => void;
@@ -14,16 +20,28 @@ interface Props {
   disabled?: boolean;
   testID?: string;
 }
-
+const AnimatedTouchableOpacity =
+  Animated.createAnimatedComponent(TouchableOpacity);
 const AppButton = ({text, onPress, style, disabled, testID}: Props) => {
+  const isDisabledAnimatedValue = useSharedValue(disabled ? 'grey' : 'black');
+
+  if (disabled) {
+    isDisabledAnimatedValue.value = withTiming('grey');
+  } else {
+    isDisabledAnimatedValue.value = withTiming('black');
+  }
+  const animatedStyle = useAnimatedStyle(() => ({
+    backgroundColor: isDisabledAnimatedValue.value,
+  }));
+
   return (
-    <TouchableOpacity
+    <AnimatedTouchableOpacity
       testID={testID}
-      style={[styles.container, style, disabled && styles.disabled]}
+      style={[styles.container, style, animatedStyle]}
       onPress={onPress}
       disabled={disabled}>
       <Text style={styles.text}>{text}</Text>
-    </TouchableOpacity>
+    </AnimatedTouchableOpacity>
   );
 };
 

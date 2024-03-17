@@ -3,6 +3,7 @@ import {Image, StyleSheet, View} from 'react-native';
 
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
+import Animated, {FadeInLeft} from 'react-native-reanimated';
 
 import AppButton from '@app/components/AppButton';
 import AppInput from '@app/components/AppInput';
@@ -35,9 +36,12 @@ const LoginScreen = () => {
         dispatch(logIn(formValues.login, formValues.password));
       },
     });
+
   return (
     <AppScreenContainer>
-      <View style={styles.contentContainer}>
+      <Animated.View
+        style={styles.contentContainer}
+        entering={FadeInLeft.duration(500).delay(400)}>
         <View style={styles.appImageContainer}>
           <Image
             style={styles.appImage}
@@ -86,7 +90,7 @@ const LoginScreen = () => {
             </AppText>
           </>
         )}
-      </View>
+      </Animated.View>
     </AppScreenContainer>
   );
 };

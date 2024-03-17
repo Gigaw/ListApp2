@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Alert, FlatList, StyleSheet} from 'react-native';
 
 import ActionSheet from 'react-native-actionsheet';
+import Animated from 'react-native-reanimated';
 
 import AppHeader from '@app/components/AppHeader';
 import AppScreenContainer from '@app/components/AppScreenContainer';
@@ -17,7 +18,7 @@ import {useAppSelector} from '@app/hooks/redux';
 
 import {Album} from '@app/models/Album';
 
-import GLOBAS_STYLES from '@app/constants/globalStyles';
+import GLOBAS_STYLES, {GLOBAL_ANIMATIONS} from '@app/constants/globalStyles';
 
 import {AlbumsProps} from '@app/navigation/TabNavigation';
 
@@ -57,27 +58,31 @@ const AlbumsScreen = ({navigation}: AlbumsProps) => {
           contentContainerStyle={styles.listContentContainer}
           data={albums}
           ListHeaderComponent={
-            <AppHeader
-              title="Albums"
-              description="Here you can see all your albums. Click on one to see the details or press longer to edit or delete."
-            />
+            <Animated.View entering={GLOBAL_ANIMATIONS.FADE_IN_LEFT_HEADER}>
+              <AppHeader
+                title="Albums"
+                description="Here you can see all your albums. Click on one to see the details or press longer to edit or delete."
+              />
+            </Animated.View>
           }
           keyExtractor={item => item.id.toString()}
           renderItem={({item: album, index}) => (
-            <AlbumsListItem
-              album={album}
-              testID={`album-item-${index}`}
-              onLongPress={() => {
-                setEditAlbum(album);
-                actionSheetRef.current?.show();
-              }}
-              onPress={() => {
-                navigation.navigate('AlbumDetail', {
-                  id: album.id,
-                  title: album.title,
-                });
-              }}
-            />
+            <Animated.View entering={GLOBAL_ANIMATIONS.FADE_IN_LEFT_ITEM}>
+              <AlbumsListItem
+                album={album}
+                testID={`album-item-${index}`}
+                onLongPress={() => {
+                  setEditAlbum(album);
+                  actionSheetRef.current?.show();
+                }}
+                onPress={() => {
+                  navigation.navigate('AlbumDetail', {
+                    id: album.id,
+                    title: album.title,
+                  });
+                }}
+              />
+            </Animated.View>
           )}
           ItemSeparatorComponent={() => Spacer({height: 10})}
           ListFooterComponent={<Spacer height={20} />}

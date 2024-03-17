@@ -1,6 +1,8 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
+import Animated from 'react-native-reanimated';
+
 import AppHeader from '@app/components/AppHeader';
 import AppListItem from '@app/components/AppListItem';
 import AppScreenContainer from '@app/components/AppScreenContainer';
@@ -12,7 +14,7 @@ import {useGetPostsByUserIdQuery} from '@app/services/PostService';
 
 import {useAppSelector} from '@app/hooks/redux';
 
-import GLOBAS_STYLES from '@app/constants/globalStyles';
+import GLOBAS_STYLES, {GLOBAL_ANIMATIONS} from '@app/constants/globalStyles';
 
 import {PostsProps} from '@app/navigation/TabNavigation';
 
@@ -34,20 +36,24 @@ const HomeScreen = ({navigation}: PostsProps) => {
           refreshing={isFetching}
           onRefresh={refetch}
           ListHeaderComponent={
-            <AppHeader
-              title="Posts"
-              description="Here you can see all your posts. Click on one to see the details."
-            />
+            <Animated.View entering={GLOBAL_ANIMATIONS.FADE_IN_LEFT_HEADER}>
+              <AppHeader
+                title="Posts"
+                description="Here you can see all your posts. Click on one to see the details."
+              />
+            </Animated.View>
           }
           keyExtractor={el => `${el.id}`}
           renderItem={({item, index}) => (
-            <AppListItem
-              key={item.id}
-              testID={`post-item-${index}`}
-              onPress={() => navigation.navigate('Detail', {id: item.id})}>
-              <AppText fontStyle="h3">{item.title}</AppText>
-              <Spacer height={5} />
-            </AppListItem>
+            <Animated.View entering={GLOBAL_ANIMATIONS.FADE_IN_LEFT_ITEM}>
+              <AppListItem
+                key={item.id}
+                testID={`post-item-${index}`}
+                onPress={() => navigation.navigate('Detail', {id: item.id})}>
+                <AppText fontStyle="h3">{item.title}</AppText>
+                <Spacer height={5} />
+              </AppListItem>
+            </Animated.View>
           )}
           ItemSeparatorComponent={() => Spacer({height: 10})}
           ListFooterComponent={<Spacer height={20} />}
