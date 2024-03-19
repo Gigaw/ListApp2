@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import Animated, {LinearTransition} from 'react-native-reanimated';
 
 import AppScreenContainer from '@app/components/AppScreenContainer';
 import AppText from '@app/components/AppText';
@@ -31,8 +32,9 @@ const DetailScreen = ({route}: Props) => {
   return (
     <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={isLoading || isLoadingComments}>
-        <FlatList
+        <Animated.FlatList
           testID="comments-list"
+          itemLayoutAnimation={LinearTransition}
           style={styles.container}
           ListHeaderComponent={
             <PostDetailBody
@@ -46,7 +48,11 @@ const DetailScreen = ({route}: Props) => {
           renderItem={({item, index}) => (
             <>
               {commentsShown && (
-                <CommentsListItem item={item} testID={`comment-${index}`} />
+                <CommentsListItem
+                  index={index}
+                  item={item}
+                  testID={`comment-${index}`}
+                />
               )}
             </>
           )}

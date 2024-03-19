@@ -1,5 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
+
+import Animated, {FadeIn} from 'react-native-reanimated';
 
 import AppSmallButton from '@app/components/AppSmallButton';
 import AppText from '@app/components/AppText';
@@ -21,7 +22,7 @@ const PostDetailBody = ({
   onShowCommentsPress,
 }: Props) => {
   return (
-    <View>
+    <Animated.View entering={FadeIn}>
       <AppText fontStyle="h2">{post?.title}</AppText>
       <Spacer height={10} />
       <AppText fontStyle="p0">{post?.body}</AppText>
@@ -41,7 +42,7 @@ const PostDetailBody = ({
         </>
       )}
       <Spacer height={20} />
-    </View>
+    </Animated.View>
   );
 };
 

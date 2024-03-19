@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
@@ -15,6 +15,8 @@ import {useAppDispatch, useAppSelector} from '@app/hooks/redux';
 
 import {clearError} from '@app/store/reducers/AuthSlice';
 import {logIn} from '@app/store/thunks/Auth';
+
+import NoteImage from './NoteImage';
 
 const validationSchema = Yup.object().shape({
   login: Yup.string().min(4, 'login must be at least 4').required('Required'),
@@ -43,11 +45,7 @@ const LoginScreen = () => {
         style={styles.contentContainer}
         entering={FadeInLeft.duration(500).delay(400)}>
         <View style={styles.appImageContainer}>
-          <Image
-            style={styles.appImage}
-            source={require('/assets/img/list-icon.png')}
-            resizeMode="contain"
-          />
+          <NoteImage />
           <AppText fontStyle="h2" textAlign="center">
             Welcome to the app
           </AppText>
