@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import AlbumDetail from '@app/screens/AlbumDetail';
 import LoginScreen from '@app/screens/Login';
+import Onboarding from '@app/screens/Onboarding';
 import DetailScreen from '@app/screens/PostDetail';
 
 import {useAppSelector} from '@app/hooks/redux';
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   Detail: {id: number};
   Login: undefined;
   AlbumDetail: {id: number; title: string};
+  Onboarding: undefined;
 };
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,11 +30,18 @@ const Navigation = () => {
       <Stack.Navigator screenOptions={{headerBackTitle: 'Back'}}>
         <>
           {!isAuthorized ? (
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{headerShown: false}}
-            />
+            <>
+              <Stack.Screen
+                name="Onboarding"
+                component={Onboarding}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{headerShown: false}}
+              />
+            </>
           ) : (
             <>
               <Stack.Screen
