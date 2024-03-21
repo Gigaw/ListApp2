@@ -6,6 +6,10 @@ import Animated from 'react-native-reanimated';
 import AppScreenContainer from '@app/components/AppScreenContainer';
 import DataAppContainer from '@app/components/DataAppContainer';
 
+import {useAppDispatch} from '@app/hooks/redux';
+
+import {setIsOnboardingShown} from '@app/store/reducers/AppSlice';
+
 import Footer from './Footer';
 import Header from './Header';
 import Scene from './Scene';
@@ -34,11 +38,8 @@ const DATA = [
   },
 ];
 
-interface Props {
-  navigation: any;
-}
-
-const Onboarding = ({navigation}: Props) => {
+const Onboarding = () => {
+  const dispatch = useAppDispatch();
   const flatListRef = useRef<FlatList>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -51,13 +52,6 @@ const Onboarding = ({navigation}: Props) => {
     }
   };
 
-  const skipPress = () => {
-    flatListRef?.current?.scrollToIndex({
-      animated: true,
-      index: DATA.length - 1,
-    });
-  };
-
   const backPress = (index: number) => {
     if (index >= 1) {
       flatListRef?.current?.scrollToIndex({
@@ -67,13 +61,17 @@ const Onboarding = ({navigation}: Props) => {
     }
   };
 
+  const finishOnboarding = () => {
+    dispatch(setIsOnboardingShown(true));
+  };
+
   return (
     <AppScreenContainer disableHorizontalPadding>
       <DataAppContainer isLoading={false}>
         <Header
           activeIndex={activeIndex}
           backPress={() => backPress(activeIndex)}
-          skipPress={() => skipPress()}
+          skipPress={() => finishOnboarding()}
           isLastSlide={activeIndex === DATA.length - 1}
         />
         <View style={styles.flatListContainer}>
@@ -100,7 +98,7 @@ const Onboarding = ({navigation}: Props) => {
         </View>
         <Footer
           isLastSlide={activeIndex === DATA.length - 1}
-          onLoginPress={() => navigation.navigate('Login')}
+          onLoginPress={() => finishOnboarding()}
           onNextPress={() => nextPress(activeIndex)}
         />
       </DataAppContainer>

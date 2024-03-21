@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
-import Animated, {FadeInLeft} from 'react-native-reanimated';
+import Animated, {FadeInRight} from 'react-native-reanimated';
 
 import AppButton from '@app/components/AppButton';
 import AppInput from '@app/components/AppInput';
@@ -43,7 +43,7 @@ const LoginScreen = () => {
     <AppScreenContainer>
       <Animated.View
         style={styles.contentContainer}
-        entering={FadeInLeft.duration(500).delay(400)}>
+        entering={FadeInRight.duration(500).delay(400)}>
         <View style={styles.appImageContainer}>
           <NoteImage />
           <AppText fontStyle="h2" textAlign="center">
@@ -96,10 +96,6 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   appImageContainer: {
     alignItems: 'center',
-  },
-  appImage: {
-    width: 100,
-    height: 100,
   },
   submitButton: {
     marginTop: 20,

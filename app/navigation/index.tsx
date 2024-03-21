@@ -24,18 +24,23 @@ export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
-
+  const isOnboardingShown = useAppSelector(
+    state => state.app.isOnboardingShown,
+  );
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerBackTitle: 'Back'}}>
         <>
           {!isAuthorized ? (
             <>
-              <Stack.Screen
-                name="Onboarding"
-                component={Onboarding}
-                options={{headerShown: false}}
-              />
+              {!isOnboardingShown && (
+                <Stack.Screen
+                  name="Onboarding"
+                  component={Onboarding}
+                  options={{headerShown: false}}
+                />
+              )}
+
               <Stack.Screen
                 name="Login"
                 component={LoginScreen}

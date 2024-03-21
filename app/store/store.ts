@@ -9,9 +9,11 @@ import {postAPI} from '@app/services/PostService';
 import {todoAPI} from '@app/services/TodoService';
 import {userAPI} from '@app/services/UserService';
 
+import {appPersistedReducer} from './reducers/AppSlice';
 import {authPersistedReducer} from './reducers/AuthSlice';
 
 const rootReducer = combineReducers({
+  app: appPersistedReducer,
   auth: authPersistedReducer,
   [postAPI.reducerPath]: postAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
