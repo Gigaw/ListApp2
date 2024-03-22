@@ -28,8 +28,7 @@ const NoteImage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <Animated.View
-      style={[{backgroundColor: 'wite', zIndex: 10}, animatedStyles]}>
+    <Animated.View style={[styles.animatedContainer, animatedStyles]}>
       <Image
         style={styles.appImage}
         source={require('/assets/img/list-icon.png')}
@@ -43,6 +42,10 @@ const styles = StyleSheet.create({
   appImage: {
     width: 100,
     height: 100,
+  },
+  animatedContainer: {
+    backgroundColor: 'wite',
+    zIndex: 10,
   },
 });
 

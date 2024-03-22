@@ -58,7 +58,11 @@ const Header = ({activeIndex, backPress, skipPress, isLastSlide}: Props) => {
         <Button title="Back" onPress={() => backPress()} />
       </Animated.View>
       <Animated.View style={skipBtnAnimatedStyle}>
-        <Button title="Skip" onPress={() => skipPress()} />
+        <Button
+          title="Skip"
+          onPress={() => skipPress()}
+          testID="onboarding-skip"
+        />
       </Animated.View>
     </View>
   );

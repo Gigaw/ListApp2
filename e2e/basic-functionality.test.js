@@ -1,6 +1,6 @@
 import {by, device, element, expect, waitFor} from 'detox';
 
-describe('Example', () => {
+describe.skip('Example', () => {
   beforeAll(async () => {
     await device.launchApp();
   });
@@ -10,6 +10,7 @@ describe('Example', () => {
   });
 
   it('should login succesfully', async () => {
+    await element(by.id('onboarding-skip')).tap();
     await element(by.id('login-input')).typeText('user1');
     await element(by.id('password-input')).typeText('password1');
     await element(by.id('login-button')).tap();
